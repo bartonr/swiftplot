@@ -1,0 +1,200 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Swiftplot - Plot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "assets/css/swiftplot_styles.css" %}" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="{% static "assets/css/bootstrap-responsive.css"  %}"rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../static/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "/assets/ico/apple-touch-icon-144-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "assets/ico/apple-touch-icon-114-precomposed.png" %}">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "assets/ico/apple-touch-icon-72-precomposed.png" %}">
+                    <link rel="apple-touch-icon-precomposed" href="{% static "assets/ico/apple-touch-icon-57-precomposed.png" %}">
+                                   <link rel="shortcut icon" href="{% static "assets/ico/favicon.png" %}">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/index/"><i>Swift</i>plot</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/index/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <form action="{% url "upload_response" %}" method="post" enctype="multipart/form-data" class=".form-horizontal">
+              {% csrf_token %}
+              <li class="nav-header">Title:</li>
+              <li>
+                {{ customize_form.title.errors }}
+                {{ customize_form.title }}
+              </li>
+              <li class="nav-header">X Label:</li>
+              <li>
+                {{ customize_form.xlabel.errors }}
+                {{ customize_form.xlabel }}
+              </li>
+              <li class="nav-header">Y Label:</li>
+              <li>
+                {{ customize_form.ylabel.errors }}
+                {{ customize_form.ylabel }}
+              </li>
+              <p><input type="submit" name="customize" value="Go!" /></p>
+              </form>
+              <!--<li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>-->
+            </ul>
+            <hr>
+              <form action="{% url "upload_response" %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <!--<p>{{ form.non_field_errors }}</p>
+              <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>-->
+            <ul class="nav nav-list">
+              <li class="nav-header">Upload</li>
+              <li>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+              </li>
+              <li><input type="submit" name="upload" value="Upload" class /></li>
+            </ul>
+              <!--<p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+              </p>
+              <p><input type="submit" name="upload" value="Upload" /></p>-->
+              </form>
+
+          </div><!--/.well -->
+        </div><!--/span-->
+            
+        <div class="span9">
+          {% if images %}
+          <div class="hero-unit">
+              <img src="{% url 'plots.views.graph_display'%}?xlabel={{ xlabel }}&ylabel={{ ylabel }}&title={{ title }}" />
+          </div>
+          {% endif %}
+          <div class="row-fluid">
+            <div id="dropbox" class="hero-unit">
+              {% if images %}
+              <h2>Create a new plot</h2>
+              {% else %}
+              <h2>Need to graph your data?</h2>
+              {% endif %}
+              <p>Drag and drop a comma separated value (.csv) file here.</p>
+              <p>Or, use the button below to choose a file.*</p>
+              <div style="position:relative;">
+                <form action="{% url "upload_response" %}" method="post" enctype="multipart/form-data" id="heroform">
+                  {% csrf_token %}
+                  <a class='btn btn-primary btn-large' href='javascript:;'>
+                    Choose File...
+                    <input type="file" style='position:absolute;z-index:2;width:146px;height:44px;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="docfile" size="40"  onchange='document.getElementById("heroform").submit();'>
+                </a>
+                </form>
+              </div>
+              <!--<p><a href="/plot/" class="btn btn-primary btn-large">Upload a file &raquo;</a></p>-->
+            </div>
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span7">
+              <p>*Don't have any data?  Try graphing:</p>
+                <ul>
+                  <li><a href="{% static "data/GlobalTempvsTime.txt"%}">this list</a> of global average temperature (Celsius) from 1880 to present (<a href="http://data.giss.nasa.gov/gistemp/#tabledata">source</a>).</li>
+                  <li><a href="{% static "data/CO2Concentration.txt"%}">this list</a> of global CO2 emissions (in million metric tons of carbon) from 1750 to present (<a href="http://cdiac.ornl.gov/ftp/ndp030/global.1751_2010.ems">source</a>).</li>
+                </ul>
+              <p>(Right click and hit "save as," then drag it to the browser.)</p>
+            </div>
+            <div class="span1"></div>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Swiftplot 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+    
+    <!-- Including the HTML5 Uploader plugin -->
+    <script src="{% static "assets/js/jquery.filedrop.js" %}"></script>
+    
+    <!-- The main script file -->
+    <script src="{% static "assets/js/script.js" %}"></script>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--
+    <script src="{% static "assets/js/jquery.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-transition.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-alert.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-modal.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-dropdown.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-scrollspy.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-tab.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-tooltip.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-popover.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-button.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-collapse.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-carousel.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-typeahead.js" %}"></script>
+    -->
+  </body>
+</html>

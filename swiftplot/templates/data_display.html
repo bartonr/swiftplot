@@ -1,0 +1,10 @@
+{% if data %}
+    <p>Found {{ data|length }} book{{ data|pluralize }}.</p>
+    <ul>
+        {% for data_line in data %}
+        <li>{{ data_line.xdata }}, {{ data_line.ydata }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books matched your search criteria.</p>
+{% endif %}

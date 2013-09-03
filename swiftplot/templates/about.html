@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Swiftplot - About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="{% static "assets/css/bootstrap-responsive.css"  %}"rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../static/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "/assets/ico/apple-touch-icon-144-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "assets/ico/apple-touch-icon-114-precomposed.png" %}">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "assets/ico/apple-touch-icon-72-precomposed.png" %}">
+                    <link rel="apple-touch-icon-precomposed" href="{% static "assets/ico/apple-touch-icon-57-precomposed.png" %}">
+                                   <link rel="shortcut icon" href="{% static "assets/ico/favicon.png" %}">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/index/"><i>Swift</i>plot</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="/index/">Home</a></li>
+              <li class="active"><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header"></li>
+            </ul>
+              
+
+          </div><!--/.well -->
+        </div><!--/span-->
+
+        <div class="span9">
+          <div class="page-header"><h1>About <i>Swift</i>plot</h1></div>
+          <h3>A Tool for (Data) Scientists</h3>
+          <p>If you’re a scientist or you work with data on a regular basis, then you might have encountered this problem: you have a list of numbers that you want to plot, but you can’t do it immediately.  Maybe you can’t afford another license for expensive software packages: MATLAB, Igor, Origin, or Excel.  Or maybe you have the software, but Excel’s plots are too ugly, and you can’t remember the MATLAB code.  Either way, plotting data is such a simple task that you shouldn’t need to install <i>anything</i> to your computer.  We wanted to develop a better way.</p>
+          <p>With Swiftplot, you can simply go to <a href="/index/">swiftplot.com</a> and drag your data file to the browser.  Instantly, you’ll get a high quality plot that you can customize for your presentations.</p>
+
+          <h3>Democratizing Data Analysis</h3>
+          <p>Numbers don’t lie.  Yet we aren’t always able to look at the raw data when we’re reading about problems in the newspaper.  Don’t believe that global temperatures are rising?  You should be able to click a link and see the data for yourself, and create a trend line that extrapolates to the year 2100, right there in the browser.  </p>
+
+          <h3>Open Source</h3>
+          <p>There any number of things you might want to do with your data.  Many tasks, such as fitting trend lines or Gaussians, are extremely common.  Others are rare.  Either way, if someone else has written the code, you shouldn’t have to.  That’s why this project is fully open source, with a growing list of analysis tools to which anyone can contribute.</p>
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Swiftplot 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--
+    <script src="{% static "assets/js/jquery.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-transition.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-alert.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-modal.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-dropdown.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-scrollspy.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-tab.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-tooltip.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-popover.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-button.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-collapse.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-carousel.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap-typeahead.js" %}"></script>
+    -->
+  </body>
+</html>
